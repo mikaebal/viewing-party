@@ -1,5 +1,9 @@
 # ------------- WAVE 1 --------------------
+<<<<<<< HEAD
 # Testing push - pull
+=======
+# initial comment 
+>>>>>>> 004f2741f849868765eff7385640066601389f5b
 
 def create_movie(title, genre, rating):
     pass
