@@ -1,12 +1,15 @@
 # ------------- WAVE 1 --------------------
-<<<<<<< HEAD
 # Testing push - pull
-=======
 # initial comment 
->>>>>>> 004f2741f849868765eff7385640066601389f5b
 
 def create_movie(title, genre, rating):
-    pass
+    if title and genre and rating:
+        return {
+            "title": title, 
+            "genre": genre, 
+            "rating": rating
+            }
+    return None
 
 # -----------------------------------------
 # ------------- WAVE 2 --------------------
