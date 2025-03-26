@@ -1,6 +1,4 @@
 # ------------- WAVE 1 --------------------
-# Testing push - pull
-# initial comment 
 
 def create_movie(title, genre, rating):
     if title and genre and rating:
@@ -127,6 +125,29 @@ def get_friends_unique_watched(user_data):
 # -----------------------------------------
 # ------------- WAVE 4 --------------------
 # -----------------------------------------
+
+def get_available_recs(user_data):
+    recommended_movies = []
+    user_watched_titles = []
+    unique_recommendations = []
+
+    # store titles of movies user has watched
+    for movie in user_data["watched"]:
+        user_watched_titles.append(movie["title"])
+
+    # check each friend's watched list
+    for friend in user_data["friends"]:
+        for movie in friend["watched"]:
+            # make sure user hasn't watched it and it's on a subscribed service
+            if (
+                movie["title"] not in user_watched_titles
+                and movie["host"] in user_data["subscriptions"]
+                and movie["title"] not in unique_recommendations  # avoid duplicates
+            ):
+                recommended_movies.append(movie)
+                unique_recommendations.append(movie["title"])  # track added movies
+
+    return recommended_movies
 
 # -----------------------------------------
 # ------------- WAVE 5 --------------------
