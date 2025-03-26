@@ -152,3 +152,23 @@ def get_available_recs(user_data):
 # -----------------------------------------
 # ------------- WAVE 5 --------------------
 # -----------------------------------------
+
+# wave 5.2 
+
+def get_rec_from_favorites(user_data):
+
+    recommended_movies = []
+    
+    for movie in user_data["favorites"]:
+        movie_watched_by_friend = False
+
+        for friend in user_data["friends"]:
+            for watched_movie in friend["watched"]:
+                    if movie["title"] == watched_movie["title"]:
+                        movie_watched_by_friend = True
+                        break
+                        
+            if not movie_watched_by_friend:
+                    recommended_movies.append(movie)
+
+    return recommended_movies
