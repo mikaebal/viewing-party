@@ -214,10 +214,10 @@ def get_rec_from_favorites(user_data):
 
             # if a friend has watched it, move on to next favorite
             if movie_watched_by_friend:
-                    break
+                break
 
         # if no friends watched then recommend
         if not movie_watched_by_friend:
-                recommended_movies.append(movie)
+            recommended_movies.append(movie)
 
     return recommended_movies
