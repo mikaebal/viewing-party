@@ -192,21 +192,32 @@ def get_new_rec_by_genre(user_data):
     return recommended_movies
 
 # wave 5.2 
-
 def get_rec_from_favorites(user_data):
 
+    # if user has no friends, return user's favorite movies
+    if not user_data["friends"]:
+        return user_data["favorites"]
+
     recommended_movies = []
-    
+
+    # go through each movie in user's favorites
     for movie in user_data["favorites"]:
+        # assume no friend has watched it
         movie_watched_by_friend = False
 
+        # check if any friend watched this movie
         for friend in user_data["friends"]:
             for watched_movie in friend["watched"]:
                     if movie["title"] == watched_movie["title"]:
                         movie_watched_by_friend = True
                         break
-                        
-            if not movie_watched_by_friend:
-                    recommended_movies.append(movie)
+
+            # if a friend has watched it, move on to next favorite
+            if movie_watched_by_friend:
+                    break
+
+        # if no friends watched then recommend
+        if not movie_watched_by_friend:
+                recommended_movies.append(movie)
 
     return recommended_movies
